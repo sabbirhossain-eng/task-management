@@ -10,12 +10,12 @@ const Banner = () => {
           <div className="max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
             <h1 className="text-3xl font-extrabold sm:text-5xl">
               Let us find your
-              <strong className="block font-extrabold text-blue-400 mt-4">
+              <strong className="block font-extrabold text-blue-400 mt-4" data-aos="fade-up" data-aos-duration="3000">
                 {" "}
                 Task Manage{" "}
               </strong>
             </h1>
-            <div className="mt-8 text-center">
+            <div className="mt-8 text-center" data-aos="fade-up" data-aos-duration="3000">
               <Link to='/login'>
                 <button className="btn btn-sm bg-black text-white p-2 rounded-md font-medium hover:bg-blue-400">Let’s Explore</button>
               </Link>

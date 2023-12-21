@@ -6,10 +6,13 @@ import {
   } from "@material-tailwind/react";
   import { useEffect, useState } from "react";
   import { NavLink } from "react-router-dom";
+import ProfileMenu from "./ProfileMenu";
+import useAuth from "../Components/Hooks/useAuth";
   
 
 const NavBar = () => {
     const [openNav, setOpenNav] = useState(false);
+    const {user} = useAuth();
 
   useEffect(() => {
     window.addEventListener(
@@ -33,6 +36,19 @@ const NavBar = () => {
         Home
       </NavLink>
       </Typography>
+      {user? <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 text-lg font-normal"
+      >
+        <NavLink
+        className={({ isActive }) => (isActive ? "underline underline-offset-8 text-blue-400" : "")}
+        to="/dashboard"
+      >
+        Dashboard
+      </NavLink>
+      </Typography> : ''}
       <Typography
         as="li"
         variant="small"
@@ -69,6 +85,10 @@ const NavBar = () => {
           Contact
         </NavLink>
       </Typography>
+      {/* profile */}
+      <Typography>
+      <ProfileMenu/>
+      </Typography>
     </ul>
   );
 
@@ -79,7 +99,7 @@ const NavBar = () => {
         <div className="flex items-center justify-between text-white ">
           <Typography
             as="a"
-            href="#"
+            href="/"
             className="mr-4 cursor-pointer py-1.5 font-medium"
           >
             <h2 className="text-xl text-blue-400 font-semibold">Task Management</h2>

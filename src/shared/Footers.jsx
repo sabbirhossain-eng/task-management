@@ -2,7 +2,7 @@ import { Typography } from "@material-tailwind/react";
 import { IoLogoFacebook, IoLogoLinkedin} from "react-icons/io5";
 const Footers = () => {
   return (
-    <div className="bg-black border-t border-blue-gray-50 px-10 py-10">
+    <div className="bg-black border-t border-blue-gray-50 px-10 py-10" data-aos="fade-up" data-aos-duration="3000">
       <footer className="flex w-full flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 text-center md:justify-between ">
         <Typography className="text-xl text-blue-400 font-semibold ">
             Task Management

@@ -21,7 +21,6 @@ const Login = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const { signIn } = useAuth();
@@ -65,7 +64,6 @@ const Login = () => {
             <Input
               label="Email"
               size="lg"
-              {...register("email", { required: true })}
               name="email"
               placeholder="email"
               type="email"
@@ -89,47 +87,31 @@ const Login = () => {
             >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
-            {errors.password?.type === "required" && (
-              <p className="text-red-500">Password is required</p>
-            )}
-            {errors.password?.type === "minLength" && (
-              <p className="text-red-500">Password must be 6 characters</p>
-            )}
-            {errors.password?.type === "maxLength" && (
-              <p className="text-red-500">
-                Password must be less then 20 characters
-              </p>
-            )}
-            {errors.password?.type === "pattern" && (
-              <p className="text-red-500">
-                Password must have one upper case, one lower case, one number
-                and one special characters
-              </p>
-            )}
             <div className="-ml-2.5">
               <Checkbox label="Remember Me" />
             </div>
           </CardBody>
-        </form>
-        <CardFooter className="pt-0">
-          <Button fullWidth className="bg-blue-400">
-            Sign In
-          </Button>
-          <div className="mt-4">
-            <SocialLogin />
-            <Typography variant="small" className="mt-6 flex justify-center">
-              Don&apos;t have an account?
-              <Typography
-                as="a"
-                href="/signUp"
-                variant="small"
-                className="ml-1 font-bold text-blue-400"
-              >
-                Sign up
+
+          <CardFooter className="pt-0">
+            <Button fullWidth type="submit" className="bg-blue-400">
+              Sign In
+            </Button>
+            <div className="mt-4">
+              <SocialLogin />
+              <Typography variant="small" className="mt-6 flex justify-center">
+                Don&apos;t have an account?
+                <Typography
+                  as="a"
+                  href="/signUp"
+                  variant="small"
+                  className="ml-1 font-bold text-blue-400"
+                >
+                  Sign up
+                </Typography>
               </Typography>
-            </Typography>
-          </div>
-        </CardFooter>
+            </div>
+          </CardFooter>
+        </form>
       </Card>
     </div>
   );

@@ -1,4 +1,13 @@
-import { Button, Card, CardBody, CardFooter, CardHeader, Checkbox, Input, Typography } from "@material-tailwind/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Checkbox,
+  Input,
+  Typography,
+} from "@material-tailwind/react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import SocialLogin from "../Components/SocialLogin/SocialLogin";
 import useAxiosPublic from "../Components/Hooks/useAxiosPublic";
@@ -11,16 +20,21 @@ import img from "../assets/image/Sign up-amico.png";
 import useImageHost from "../Components/Hooks/useImageHost";
 
 const SignUp = () => {
-    const axiosPublic = useAxiosPublic();
-  const {register, handleSubmit, reset, formState: { errors },} = useForm();
-  const { createUser, signUpUpdateProfile, logOut } = useAuth();
+  const axiosPublic = useAxiosPublic();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const { createUser, signUpUpdateProfile } = useAuth();
   const imageHost = useImageHost();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     const imageFile = new FormData();
-    imageFile.append ('image', data.image[0]) 
+    imageFile.append("image", data.image[0]);
 
     const res = await axiosPublic.post(imageHost, imageFile, {
       headers: {
@@ -29,8 +43,7 @@ const SignUp = () => {
     });
 
     if (res.data.success) {
-      createUser(data.email, data.password)
-      .then((result) => {
+      createUser(data.email, data.password).then((result) => {
         const logger = result.user;
         console.log(logger);
         signUpUpdateProfile(data.name, res.data.data.display_url)
@@ -39,13 +52,12 @@ const SignUp = () => {
               name: data.name,
               email: data.email,
               image: res.data.data.display_url,
-              role: 'user'
+              role: "user",
             };
             axiosPublic.post("/users", userInfo).then((res) => {
               if (res.data.insertedId) {
                 reset();
                 toast.success("Sign Up Successfully!");
-                logOut();
                 navigate("/login");
               }
             });
@@ -57,8 +69,8 @@ const SignUp = () => {
       });
     }
   };
-    return (
-        <div className="pt-10 flex flex-col md:flex-row gap-10 items-center">
+  return (
+    <div className="pt-10 flex flex-col md:flex-row gap-10 items-center">
       <div className="w-auto md:w-[50%] mx-auto">
         <img src={img} alt="Login" className="md:w-[80%]" />
       </div>
@@ -73,17 +85,17 @@ const SignUp = () => {
             </Typography>
           </CardHeader>
           <CardBody className="space-y-4">
-          <label className="label">
-                  <span className="label-text">Your Photo</span>
-                </label>
-                <input
-                  {...register("image", { required: true })}
-                  type="file"
-                  className="file-input  border border-blue-400 p-2 rounded-md text-blue-400 w-full max-w-xs"
-                />
-                 {errors.image && (
-                  <span className="text-red-500">Image is required</span>
-                )}
+            <label className="label">
+              <span className="label-text">Your Photo</span>
+            </label>
+            <input
+              {...register("image", { required: true })}
+              type="file"
+              className="file-input  border border-blue-400 p-2 rounded-md text-blue-400 w-full max-w-xs"
+            />
+            {errors.image && (
+              <span className="text-red-500">Image is required</span>
+            )}
             <Input
               label="Name"
               size="lg"
@@ -140,29 +152,30 @@ const SignUp = () => {
               <Checkbox label="Remember Me" />
             </div>
           </CardBody>
-        </form>
-        <CardFooter className="pt-0">
-          <Button fullWidth className="bg-blue-400">
-            Sign In
-          </Button>
-          <div className="mt-4">
-            <SocialLogin />
-            <Typography variant="small" className="mt-6 flex justify-center">
-              Don&apos;t have an account?
-              <Typography
-                as="a"
-                href="/signUp"
-                variant="small"
-                className="ml-1 font-bold text-blue-400"
-              >
-                Sign up
+
+          <CardFooter className="pt-0">
+            <Button fullWidth type="submit" className="bg-blue-400">
+              Sign In
+            </Button>
+            <div className="mt-4">
+              <SocialLogin />
+              <Typography variant="small" className="mt-6 flex justify-center">
+                Already have an account?
+                <Typography
+                  as="a"
+                  href="/login"
+                  variant="small"
+                  className="ml-1 font-bold text-blue-400"
+                >
+                  Login
+                </Typography>
               </Typography>
-            </Typography>
-          </div>
-        </CardFooter>
+            </div>
+          </CardFooter>
+        </form>
       </Card>
     </div>
-    );
+  );
 };
 
 export default SignUp;
