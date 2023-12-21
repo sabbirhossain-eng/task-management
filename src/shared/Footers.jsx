@@ -12,7 +12,7 @@ const Footers = () => {
             as="a"
             href="https://www.linkedin.com/in/sabbirhossain1"
             target="_blank"
-            className="text-2xl text-blue-400 focus:text-blue-500"
+            className="text-2xl text-white focus:text-blue-500"
           >
             <IoLogoLinkedin/>
           </Typography>
@@ -20,7 +20,7 @@ const Footers = () => {
             as="a"
             href="https://www.facebook.com/sabbirh.cse"
             target="_blank"
-            className="text-2xl text-blue-400 focus:text-blue-500"
+            className="text-2xl text-white focus:text-blue-500"
           >
             <IoLogoFacebook/>
           </Typography>

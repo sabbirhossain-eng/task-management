@@ -1,53 +1,64 @@
-import { useForm } from "react-hook-form";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
-  Input,
-  Checkbox,
-  Button,
-} from "@material-tailwind/react";
-import img from "../../assets/image/Login-amico.png";
+import { Button, Card, CardBody, CardFooter, CardHeader, Checkbox, Input, Typography } from "@material-tailwind/react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import SocialLogin from "../Components/SocialLogin/SocialLogin";
+import useAxiosPublic from "../Components/Hooks/useAxiosPublic";
+import { useForm } from "react-hook-form";
+import useAuth from "../Components/Hooks/useAuth";
 import { useState } from "react";
-import SocialLogin from "../../Components/SocialLogin/SocialLogin";
-import useAuth from "../../Components/Hooks/useAuth";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-const Login = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
-  const [showPassword, setShowPassword] = useState(false);
-  const { signIn } = useAuth();
-  const navigate = useNavigate();
-  const location = useLocation();
+import img from "../assets/image/Sign up-amico.png";
+import useImageHost from "../Components/Hooks/useImageHost";
 
-  const from = location.state?.from?.pathname || "/";
+const SignUp = () => {
+    const axiosPublic = useAxiosPublic();
+  const {register, handleSubmit, reset, formState: { errors },} = useForm();
+  const { createUser, signUpUpdateProfile, logOut } = useAuth();
+  const imageHost = useImageHost();
+  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    const email = data.email;
-    const password = data.password;
+    const imageFile = new FormData();
+    imageFile.append ('image', data.image[0]) 
 
-    signIn(email, password)
+    const res = await axiosPublic.post(imageHost, imageFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+
+    if (res.data.success) {
+      createUser(data.email, data.password)
       .then((result) => {
-        const user = result.user;
-        console.log(user);
-        toast.success("Login Successfully!");
-        reset();
-        navigate(from, { replace: true });
-      })
-      .catch((error) => {
-        toast.error(error.message);
+        const logger = result.user;
+        console.log(logger);
+        signUpUpdateProfile(data.name, res.data.data.display_url)
+          .then(() => {
+            const userInfo = {
+              name: data.name,
+              email: data.email,
+              image: res.data.data.display_url,
+              role: 'user'
+            };
+            axiosPublic.post("/users", userInfo).then((res) => {
+              if (res.data.insertedId) {
+                reset();
+                toast.success("Sign Up Successfully!");
+                logOut();
+                navigate("/login");
+              }
+            });
+          })
+          .catch((error) => {
+            console.error(error);
+            toast.error(error);
+          });
       });
+    }
   };
-  return (
-    <div className="pt-10 flex flex-col md:flex-row gap-10 items-center">
+    return (
+        <div className="pt-10 flex flex-col md:flex-row gap-10 items-center">
       <div className="w-auto md:w-[50%] mx-auto">
         <img src={img} alt="Login" className="md:w-[80%]" />
       </div>
@@ -62,6 +73,25 @@ const Login = () => {
             </Typography>
           </CardHeader>
           <CardBody className="space-y-4">
+          <label className="label">
+                  <span className="label-text">Your Photo</span>
+                </label>
+                <input
+                  {...register("image", { required: true })}
+                  type="file"
+                  className="file-input  border border-blue-400 p-2 rounded-md text-blue-400 w-full max-w-xs"
+                />
+                 {errors.image && (
+                  <span className="text-red-500">Image is required</span>
+                )}
+            <Input
+              label="Name"
+              size="lg"
+              {...register("name", { required: true })}
+              name="name"
+              placeholder="Your name"
+              type="text"
+            />
             <Input
               label="Email"
               size="lg"
@@ -85,7 +115,7 @@ const Login = () => {
             />
             <span
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute top-[172px] right-8"
+              className="absolute top-[334px] right-8"
             >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
@@ -132,7 +162,7 @@ const Login = () => {
         </CardFooter>
       </Card>
     </div>
-  );
+    );
 };
 
-export default Login;
+export default SignUp;

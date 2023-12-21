@@ -16,7 +16,7 @@ const Banner = () => {
               </strong>
             </h1>
             <div className="mt-8 text-center">
-              <Link>
+              <Link to='/login'>
                 <button className="btn btn-sm bg-black text-white p-2 rounded-md font-medium hover:bg-blue-400">Let’s Explore</button>
               </Link>
             </div>
