@@ -44,7 +44,7 @@ const NavBar = () => {
       >
         <NavLink
         className={({ isActive }) => (isActive ? "underline underline-offset-8 text-blue-400" : "")}
-        to="/dashboard"
+        to="/dashboard/user_Dashboard"
       >
         Dashboard
       </NavLink>
