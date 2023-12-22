@@ -69,7 +69,7 @@ const NavBar = () => {
       >
         <NavLink 
          className={({ isActive }) => (isActive ? "underline underline-offset-8 text-blue-400" : "")}
-        to="/About" >
+        to="/about" >
           About
         </NavLink>
       </Typography>

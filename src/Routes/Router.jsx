@@ -9,6 +9,9 @@ import Dashboard from "../pages/Dashboard/Dashboard/Dashboard";
 import AddTask from "../pages/Dashboard/AddTask/AddTask";
 import TaskManagementDashboard from "../pages/Dashboard/TaskManagementDashboard/TaskManagementDashboard";
 import TaskUpdate from "../pages/Dashboard/TaskUpdate/TaskUpdate";
+import Blog from "../pages/Blog/Blog";
+import About from "../pages/About/About";
+import Contact from "../pages/Contact/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +21,18 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: '/blog',
+        element: <Blog/>
+      },
+      {
+        path: '/about',
+        element: <About/>
+      },
+      {
+        path: '/contact',
+        element: <Contact/>
       },
       {
         path: "/signUp",
