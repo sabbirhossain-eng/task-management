@@ -22,6 +22,7 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import TaskList from "../../../Components/TaskList/TaskList";
 import { Link } from "react-router-dom";
+import Modal from "../../../Components/Modal.jsx/Modal";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -142,6 +143,7 @@ const TaskManagementDashboard = () => {
                 <StyledTableCell align="right">Title</StyledTableCell>
                 <StyledTableCell align="right">Priority</StyledTableCell>
                 <StyledTableCell align="right">Deadline</StyledTableCell>
+                <StyledTableCell align="right">Description</StyledTableCell>
                 <StyledTableCell align="right">Edit</StyledTableCell>
                 <StyledTableCell align="right">Delete</StyledTableCell>
               </TableRow>
@@ -166,6 +168,10 @@ const TaskManagementDashboard = () => {
                       {/* deadline */}
                       <StyledTableCell align="right">
                        {task.deadline}
+                      </StyledTableCell>
+                      {/* description */}
+                      <StyledTableCell align="right">
+                       <Modal/>
                       </StyledTableCell>
                       {/* edit */}
                       <StyledTableCell align="right">
