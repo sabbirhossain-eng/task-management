@@ -98,10 +98,10 @@ const TaskManagementDashboard = () => {
   };
 
   const [todoTasks, setTodoTasks] = useState([]);
-  const [ongoingTasks, setOngoingTasks] = useState([]);
-  const [completedTasks, setCompletedTasks] = useState([]);
+  const [ongoingTasks, setOngoingTasks] = useState(['']);
+  const [completedTasks, setCompletedTasks] = useState(['']);
 
-  const handleDrop = ({sourceIndex, targetList}) => {
+  const handleDrop = (sourceIndex, targetList) => {
     let draggedTask;
 
     if (targetList === 0) {

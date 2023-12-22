@@ -1,0 +1,95 @@
+{
+    "target_audience": [
+      {
+        "id": 1,
+        "profession": "Developers and IT Teams",
+        "benefits": [
+          "Manage sprints and track code changes",
+          "Coordinate development tasks",
+          "Integrate with popular development tools"
+        ]
+      },
+      {
+        "id": 2,
+        "profession": "Corporate Professionals",
+        "benefits": [
+          "Organize and prioritize tasks",
+          "Enhance project execution",
+          "Improve communication and collaboration"
+        ]
+      },
+      {
+        "id": 3,
+        "profession": "Bankers and Finance Professionals",
+        "benefits": [
+          "Manage financial projects",
+          "Track budget allocations",
+          "Ensure compliance and data security"
+        ]
+      },
+      {
+        "id": 4,
+        "profession": "Entrepreneurs and Small Business Owners",
+        "benefits": [
+          "Scale operations effectively",
+          "Meet business goals",
+          "Affordable and scalable solution"
+        ]
+      },
+      {
+        "id": 5,
+        "profession": "Freelancers and Independent Contractors",
+        "benefits": [
+          "Manage multiple projects",
+          "Set deadlines and milestones",
+          "Reduce administrative burden"
+        ]
+      },
+      {
+        "id": 6,
+        "profession": "Educational Institutions",
+        "benefits": [
+          "Manage lesson plans and assignments",
+          "Encourage student engagement",
+          "Facilitate teamwork"
+        ]
+      },
+      {
+        "id": 7,
+        "profession": "Healthcare Professionals",
+        "benefits": [
+          "Coordinate patient care",
+          "Manage schedules and protocols",
+          "Secure collaboration platform"
+        ]
+      },
+      {
+        "id": 8,
+        "profession": "Nonprofit Organizations",
+        "benefits": [
+          "Streamline project management",
+          "Efficient use of resources",
+          "Timely execution of initiatives"
+        ]
+      },
+      {
+        "id": 9,
+        "profession": "Remote Teams",
+        "benefits": [
+          "Centralized platform for communication",
+          "Task tracking in distributed environments",
+          "Integration with virtual collaboration tools"
+        ]
+      },
+      {
+        "id": 10,
+        "profession": "Event Planners",
+        "benefits": [
+          "Coordinate event organization tasks",
+          "Vendor management and timeline tracking",
+          "Enhance team communication"
+        ]
+      }
+    ]
+  }
+  

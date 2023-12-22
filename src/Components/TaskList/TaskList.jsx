@@ -45,7 +45,7 @@ const DropTargetList = ({ tasks, onDrop }) => {
       }}
     >
       {tasks.map((task, index) => (
-        <DraggableTask key={task.id} task={task} index={index} />
+        <DraggableTask key={task._id} task={task} index={index} />
       ))}
     </div>
   );
